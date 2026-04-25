@@ -15,9 +15,6 @@ try:
 except Exception:
     GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-# Initialize Groq Client
-client = Groq(api_key=GROQ_API_KEY)
-
 # --- Page Configuration & Custom CSS ---
 st.set_page_config(page_title="Catalyst AI | Sourcing", page_icon="⚡", layout="centered")
 
@@ -38,6 +35,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# --- Safety Check ---
+if not GROQ_API_KEY:
+    st.error("⚠️ System Configuration Error: Missing API Key.")
+    st.info("To fix: Go to Streamlit Cloud Dashboard -> Settings -> Secrets -> add GROQ_API_KEY=\"gsk_...\"")
+    st.stop() # Stops the app gracefully before it crashes!
+
+# Initialize Groq Client ONLY if the key exists
+client = Groq(api_key=GROQ_API_KEY)
+
 # --- Initialize Vector DB ---
 @st.cache_resource
 def init_chromadb():
@@ -51,10 +57,6 @@ collection = init_chromadb()
 st.title("⚡ Catalyst AI")
 st.markdown("### Autonomous Talent Sourcing & Engagement Pipeline")
 st.divider()
-
-if not GROQ_API_KEY:
-    st.error("System Configuration Error. Please check backend environment variables or Streamlit secrets.")
-    st.stop()
 
 # --- Agent Functions ---
 def parse_jd(jd_text):
