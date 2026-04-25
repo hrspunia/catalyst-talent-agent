@@ -1,0 +1,19 @@
+[
+  {"id": "C001", "name": "Aarav Mehta", "current_role": "Backend Engineer", "years_of_experience": 3, "skills": ["Python", "Django", "PostgreSQL", "AWS"], "past_companies": ["Zomato", "Paytm"], "hidden_interest_level": "highly motivated and actively looking"},
+  {"id": "C002", "name": "Riya Sharma", "current_role": "Frontend Developer", "years_of_experience": 2, "skills": ["React", "JavaScript", "CSS", "HTML"], "past_companies": ["Infosys"], "hidden_interest_level": "highly motivated and actively looking"},
+  {"id": "C003", "name": "Kunal Verma", "current_role": "Data Analyst", "years_of_experience": 4, "skills": ["SQL", "Python", "Tableau", "Excel"], "past_companies": ["TCS", "Wipro"], "hidden_interest_level": "highly motivated and actively looking"},
+  {"id": "C004", "name": "Sneha Iyer", "current_role": "Machine Learning Engineer", "years_of_experience": 5, "skills": ["Python", "TensorFlow", "PyTorch", "AWS"], "past_companies": ["Amazon", "Flipkart"], "hidden_interest_level": "highly motivated and actively looking"},
+  {"id": "C005", "name": "Rahul Gupta", "current_role": "Full Stack Developer", "years_of_experience": 3, "skills": ["Node.js", "React", "MongoDB", "Express"], "past_companies": ["Swiggy"], "hidden_interest_level": "highly motivated and actively looking"},
+
+  {"id": "C006", "name": "Ananya Singh", "current_role": "Cloud Engineer", "years_of_experience": 6, "skills": ["AWS", "Docker", "Kubernetes", "Python"], "past_companies": ["IBM", "Accenture"], "hidden_interest_level": "passive but open for a 30% hike"},
+  {"id": "C007", "name": "Vikram Reddy", "current_role": "DevOps Engineer", "years_of_experience": 5, "skills": ["Jenkins", "Docker", "AWS", "Linux"], "past_companies": ["Capgemini"], "hidden_interest_level": "passive but open for a 30% hike"},
+  {"id": "C008", "name": "Pooja Nair", "current_role": "UI/UX Designer", "years_of_experience": 4, "skills": ["Figma", "Adobe XD", "CSS", "HTML"], "past_companies": ["Byju's"], "hidden_interest_level": "passive but open for a 30% hike"},
+  {"id": "C009", "name": "Aditya Jain", "current_role": "Data Engineer", "years_of_experience": 7, "skills": ["Python", "Spark", "Hadoop", "SQL"], "past_companies": ["Microsoft", "Oracle"], "hidden_interest_level": "passive but open for a 30% hike"},
+  {"id": "C010", "name": "Neha Kapoor", "current_role": "QA Engineer", "years_of_experience": 3, "skills": ["Selenium", "Java", "TestNG", "API Testing"], "past_companies": ["Cognizant"], "hidden_interest_level": "passive but open for a 30% hike"},
+
+  {"id": "C011", "name": "Rohan Das", "current_role": "Software Engineer", "years_of_experience": 4, "skills": ["Java", "Spring Boot", "MySQL", "AWS"], "past_companies": ["HCL"], "hidden_interest_level": "happy at their current job and not looking"},
+  {"id": "C012", "name": "Megha Chatterjee", "current_role": "Mobile App Developer", "years_of_experience": 3, "skills": ["Flutter", "Dart", "Firebase"], "past_companies": ["Tech Mahindra"], "hidden_interest_level": "happy at their current job and not looking"},
+  {"id": "C013", "name": "Siddharth Malhotra", "current_role": "Security Engineer", "years_of_experience": 6, "skills": ["Cybersecurity", "Network Security", "Python", "SIEM"], "past_companies": ["Cisco"], "hidden_interest_level": "happy at their current job and not looking"},
+  {"id": "C014", "name": "Ishita Bose", "current_role": "Business Analyst", "years_of_experience": 5, "skills": ["SQL", "Power BI", "Excel", "Stakeholder Management"], "past_companies": ["Deloitte"], "hidden_interest_level": "happy at their current job and not looking"},
+  {"id": "C015", "name": "Manish Yadav", "current_role": "System Administrator", "years_of_experience": 8, "skills": ["Linux", "Networking", "Shell Scripting", "AWS"], "past_companies": ["Wipro"], "hidden_interest_level": "happy at their current job and not looking"}
+]
