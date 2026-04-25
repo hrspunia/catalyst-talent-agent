@@ -5,11 +5,18 @@ from dotenv import load_dotenv
 from groq import Groq
 import chromadb
 
-# Load environment variables silently
+# Load environment variables silently (for local testing)
 load_dotenv()
 
+# --- Fetch API Key Safely ---
+# Try Streamlit Secrets first (Cloud), fallback to os.getenv (Local)
+try:
+    GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+except Exception:
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 # Initialize Groq Client
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+client = Groq(api_key=GROQ_API_KEY)
 
 # --- Page Configuration & Custom CSS ---
 st.set_page_config(page_title="Catalyst AI | Sourcing", page_icon="⚡", layout="centered")
@@ -32,7 +39,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Initialize Vector DB ---
-# Connect to the permanent database you just created
 @st.cache_resource
 def init_chromadb():
     chroma_client = chromadb.PersistentClient(path="./chroma_db")
@@ -46,8 +52,8 @@ st.title("⚡ Catalyst AI")
 st.markdown("### Autonomous Talent Sourcing & Engagement Pipeline")
 st.divider()
 
-if not os.getenv("GROQ_API_KEY"):
-    st.error("System Configuration Error. Please check backend environment variables.")
+if not GROQ_API_KEY:
+    st.error("System Configuration Error. Please check backend environment variables or Streamlit secrets.")
     st.stop()
 
 # --- Agent Functions ---
