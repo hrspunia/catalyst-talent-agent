@@ -7,17 +7,24 @@ Catalyst AI is an autonomous, end-to-end agentic workflow designed to eliminate 
 
 The final output is a ranked shortlist based on a composite score of **Skill Match (60%)** and **Interest Level (40%)**.
 
-## 🏗 Architecture & Workflow
+## 🏗 Architecture & Scoring Logic
 
-1. **Phase 1: JD Extraction Agent**
-   - **Input:** Unstructured Job Description text.
-   - **Action:** Processed by Groq (Llama-3.1-8b-instant) using strict JSON mode to extract the Target Role, Required Skills, and Years of Experience.
-2. **Phase 2: Vector Discovery Engine**
-   - **Action:** Parses the structured requirements into a semantic query. Searches a local `ChromaDB` instance containing dummy candidate profiles.
-   - **Explainability:** For the top 3 matches, Llama-3 evaluates the candidate's JSON profile against the parsed JD, generating a deterministic **Match Score (0-100)** and a 2-sentence rationale explaining the fit or missing gaps.
-3. **Phase 3: Conversational Engagement Simulator**
-   - **Action:** To simulate real-world outreach without spamming emails, the system injects the candidate's "Hidden Interest Level" (a hidden JSON trait) into a roleplay prompt.
-   - **Evaluation:** Llama-3 drafts an initial recruiter pitch, simulates the candidate's response based on their hidden persona, and evaluates the transcript to output an **Interest Score (0-100)**.
+![Catalyst AI Architecture](catalyst_ai_architecture.png)
+
+The Catalyst AI pipeline operates on a deterministic, multi-agent architecture to ensure candidates are ranked not just by their resume, but by their likelihood to accept the role. 
+
+**1. The Vector Retrieval (Pre-Screening):**
+The parsed job requirements (Title + Skills) are converted into vector embeddings. ChromaDB searches the local candidate database and uses semantic similarity to pull the top 3 closest matches. 
+
+**2. The Dual-Scoring Engine:**
+Once the top 3 candidates are retrieved, the system forks into two parallel LLM evaluations using Groq (Llama-3.1-8b):
+* **The Match Score (0-100):** The LLM acts as a strict technical recruiter, comparing the parsed JD JSON against the Candidate Profile JSON. It calculates a definitive score based on overlapping skills and experience, outputting a 2-sentence rationale for transparency.
+* **The Interest Score (0-100):** The LLM acts as a conversational agent. It reads a hidden parameter in the candidate's database profile (`hidden_interest_level`) and simulates a 2-message outreach exchange. If the candidate's persona dictates they are happy at their current job, they reply dismissively, resulting in a low score. If they are actively looking, they reply enthusiastically, resulting in a high score.
+
+**3. The Golden Ranking Formula:**
+The final candidate ranking relies on a weighted algorithm: 
+`Overall Score = (Match Score * 0.6) + (Interest Score * 0.4)`
+*Rationale:* The Match Score is weighted heavier to ensure highly qualified but passive candidates still rank above highly interested but under-qualified candidates.
 
 ## ⚙️ Technical Stack
 * **Frontend:** Streamlit (Chosen for rapid UI prototyping and state management).
@@ -28,7 +35,6 @@ The final output is a ranked shortlist based on a composite score of **Skill Mat
 ## ⚖️ Trade-offs & Design Decisions
 * **Local vs. Cloud Vector DB:** Opted for a persistent local ChromaDB instance rather than a managed cloud service to ensure zero latency during the demo and adhere strictly to free-tier constraints.
 * **Simulated Outreach vs. Multi-Agent Framework:** Decided against using heavy multi-agent frameworks (like CrewAI/AutoGen) for the engagement simulator. Instead, I used chained LLM prompts with strict JSON schema enforcement via Groq. This reduced token overhead, eliminated infinite conversation loops, and drastically improved the pipeline's execution speed.
-* **Scoring Weights:** Weighted the Match Score heavier (60%) than the Interest Score (40%) to ensure highly qualified but passive candidates still rank above highly interested but under-qualified candidates.
 
 ## 🚀 Run It Locally
 
