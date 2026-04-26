@@ -47,3 +47,11 @@ The final candidate ranking relies on a weighted algorithm:
    ```bash
    git clone [https://github.com/hrspunia/catalyst-talent-agent.git](https://github.com/hrspunia/catalyst-talent-agent.git)
    cd catalyst-talent-agent
+
+## 📥 Sample Inputs & Outputs
+
+Instead of just text, here is a screenshot of the Catalyst AI pipeline in action. 
+
+It successfully parsed the raw job description, retrieved the top 3 semantic matches, and executed the dual-scoring engine to calculate the overall fit based on both technical skills and simulated candidate interest.
+
+![Catalyst AI Sample Output](sample_output.png)
